@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 #wrapper{
     width:100vw;
@@ -27,7 +28,8 @@ body{
     -ms-flex-align: center;
     align-items: center;
     background-color: #490500;
-    height: 7vh;
+    height: 12vh;
+    z-index: 1;
 }
 .headerItem{
     -webkit-order: 0;
@@ -118,6 +120,7 @@ a.headerItem:hover{
     -ms-flex-align: center;
     align-items: center;
     width:40%;
+    
 }
 #mainSetup{
     height: 20vh;
@@ -127,14 +130,22 @@ a.headerItem:hover{
 }
 .input{
     width:100%;
-    border-radius: 20%;
+    
     border: 0px ;
-    border-bottom: 2px solid darkblue;
+    background-color: #007bff;
+    border-bottom: 2px solid rgb(0, 0, 68);
     margin: 10px;
+    color: white;
+}
+.btn-primary{
+    border-radius:50%  10% ;
 }
 #payAmount{
     display: none;
 }
 #paymentDue{
     display: none;
+}
+#setupRequest{
+    font-size: 4em;
 }

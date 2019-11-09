@@ -119,17 +119,20 @@ app.controller('calculationAndDraw', function($scope) {
     return result;
   }
   var form=document.getElementsByClassName('setupForm');
-  var button=document.getElementById("genButton");
+  var button=document.getElementById('genButton');
   var button2=document.getElementById('mainSetup');
+  var request=document.getElementById('setupRequest');
   $scope.display=function(){
 
    form[0].style.display='flex';
    var button=document.getElementById('setupButton').style.display="none";
     button2.style.display='inline';
+    request.style.display='none';
   }                               /*Two functions are created so that you cannot reopen the setup untill you refresh the page */
   $scope.close=function(){
    form[0].style.display='none';
    button2.style.display='none';
+  
   }
   $scope.displayPayment=function(){
     var paymentSpan=document.getElementById('payAmount');
