@@ -60,6 +60,7 @@ app.controller('calculationAndDraw', function($scope) {
     
   var calculateChange=function(){
     var coinCountArray=[];
+    var lastCoinUsed=$scope.denominations.length-1;
     /*console.log($scope.denominations);
       console.log($scope.denominations.length);
       console.log($scope.rand);
@@ -76,22 +77,36 @@ app.controller('calculationAndDraw', function($scope) {
         var change=parseFloat(Math.round( $scope.amountGiven * 10) / 10)-(Math.round( $scope.rand * 10) / 10);
 
         change=Math.round( change * 10) / 10;
+        while(lastCoinUsed!=0){
 
-        for(var i=$scope.denominations.length-1;i>=0;i--){
-        // console.log($scope.denominations.length);
-          //console.log($scope.denominations[i].numOfCoins);
-          
-          while($scope.denominations[i].numOfCoins>0&&$scope.denominations[i].value<=change){
-            //console.log(coinCountArray);
-            //console.log(change);
-            change-= $scope.denominations[i].value;
-            change=Math.round( change * 10) / 10;
-            coinCountArray[i].value+=1;
-            
-            $scope.denominations[i].numOfCoins--;
-          }
+          for(var i=lastCoinUsed;i>=0;i--){
+            // console.log($scope.denominations.length);
+              //console.log($scope.denominations[i].numOfCoins);
+              
+              while($scope.denominations[i].numOfCoins>0&&$scope.denominations[i].value<=change){
+                //console.log(coinCountArray);
+                //console.log(change);
+                change-= $scope.denominations[i].value;
+                change=Math.round( change * 10) / 10;
+                coinCountArray[i].value+=1;
+                
+                console.log(lastCoinUsed);
+                $scope.denominations[i].numOfCoins--;
+                console.log(coinCountArray);
+              }
+            }
+            if(change==0){
+              return coinCountArray;
+            }
+            else{
+              coinCountArray[lastCoinUsed].value-=1;
+              change+=$scope.denominations[lastCoinUsed].value;
+              lastCoinUsed-=1;
+              
+            }
         }
-        return coinCountArray;
+        
+        
       }
       else {
         return [{name:"We are sorry. We don't have enough money in our balance.", coin:""}]
